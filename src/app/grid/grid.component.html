@@ -1,7 +1,7 @@
 <h2>GRID Component</h2>
-<ngx-gridster [options]="gridsterOptions" [draggableOptions]="{ handlerClass: 'panel-heading' }">
+<ngx-gridster [options]="gridsterOptions" [draggableOptions]="{ handlerClass: 'panel-heading' }" >
 
-    <ngx-gridster-item *ngFor="let widget of widgets">
+    <ngx-gridster-item *ngFor="let widget of widgets"class="gridster">
         <div class="panel-heading">
             <p style="text-align:center;" class="panel-title">{{widget.title}}</p>
         </div>

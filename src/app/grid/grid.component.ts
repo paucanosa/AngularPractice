@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import {widgetService} from '../widget.service';
-import { Subscription } from 'rxjs';
+
 @Component({
   selector: 'app-grid',
   templateUrl: './grid.component.html',
@@ -15,7 +14,7 @@ export class GridComponent implements OnInit {
     resizable: true, // possible to resize items by drag n drop by item edge/corner
     useCSSTransforms: true, // improves rendering performance by using CSS transform in place of left/top
   };
-  
+
   @Input()
   widgets:Array<any>
 

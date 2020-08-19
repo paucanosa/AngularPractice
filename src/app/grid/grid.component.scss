@@ -1,0 +1,14 @@
+$lettercolorprenomics: rgb(0, 23, 93);
+$backgcolorprenomics: rgb(72, 188, 162);
+$standardfont: BlinkMacSystemFont,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+
+
+
+.panel-title{
+    font-family:$standardfont;
+}
+.gridster{
+    border-color: $lettercolorprenomics;
+    border-radius: 4px;
+    background-color:rgb(152, 167, 164);
+}
