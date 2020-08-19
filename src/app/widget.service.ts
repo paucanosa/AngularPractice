@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class AddwidgetService {
+export class widgetService {
   private notify = new Subject<any>();
   
   notifyObservable$ = this.notify.asObservable();

@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
-import {AddwidgetService} from '../addwidget.service';
+import {widgetService} from '../widget.service';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -7,7 +7,7 @@ import {AddwidgetService} from '../addwidget.service';
 })
 export class MenuComponent implements OnInit {
 
-  constructor(private AddwidgetService: AddwidgetService ) { }
+  constructor(private AddwidgetService: widgetService ) { }
   ngOnInit(): void {
   }
 
