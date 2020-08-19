@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
        this.subscription = this.widgetService.notifyObservable$.subscribe((res) => {
        console.log("Added from appcomponent");
-      this.currentWidgets.push({title:"Another one"})
+       this.currentWidgets = res
    });
    }
 }

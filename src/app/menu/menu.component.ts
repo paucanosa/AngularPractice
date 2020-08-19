@@ -15,7 +15,7 @@ export class MenuComponent implements OnInit {
   addWidget()
   {
     console.log("New widget");
-    this.AddwidgetService.notifyOther();
+    this.AddwidgetService.addWidget();
   }
 
 }

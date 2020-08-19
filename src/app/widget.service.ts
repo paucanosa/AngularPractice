@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { StoreService} from './store.service'
 
 @Injectable({
   providedIn: 'root'
 })
 export class widgetService {
   private notify = new Subject<any>();
-  
   notifyObservable$ = this.notify.asObservable();
-  constructor() { }
+  constructor( private StoreService: StoreService) { }
 
-  public notifyOther() {
-      this.notify.next();
+  public addWidget() {
+      this.StoreService.addWidget();
+      this.notify.next(this.StoreService.currentWidgets);
   }
 }
