@@ -1,12 +1,15 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-
+import * as Highcharts from 'highcharts';
+import {AreaOptions} from '../charts/areachart'
+import {LineOptions} from '../charts/linechart'
+import {BarOptions} from '../charts/barchart'
+import {PieOptions}from '../charts/piechart'
 @Component({
   selector: 'app-grid',
   templateUrl: './grid.component.html',
   styleUrls: ['./grid.component.scss']
 })
 export class GridComponent implements OnInit {
-  
   gridsterOptions = {
     lanes: 5, // how many lines (grid cells) dashboard has
     direction: 'vertical', // items floating direction: vertical/horizontal
@@ -15,12 +18,19 @@ export class GridComponent implements OnInit {
     useCSSTransforms: true, // improves rendering performance by using CSS transform in place of left/top
   };
 
-  @Input()
-  widgets:Array<any>
+  charOpt: { [id: string] : Object; } = {};
 
-  constructor() { }
+  @Input()
+  widgets: Array<any>
   
+  constructor() { }
+  Highcharts: typeof Highcharts = Highcharts;
+
   ngOnInit(): void {
+    this.charOpt["line"] = LineOptions
+    this.charOpt["bar"] = BarOptions
+    this.charOpt["area"] = AreaOptions
+    this.charOpt["pie"] = PieOptions
   }
 
-}
+  }

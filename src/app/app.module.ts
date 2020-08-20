@@ -7,18 +7,21 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { MenuComponent } from './menu/menu.component';
 import { GridComponent } from './grid/grid.component';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
     GridComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     GridsterModule.forRoot(),
     FormsModule,
+    HighchartsChartModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

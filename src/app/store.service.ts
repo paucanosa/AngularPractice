@@ -4,11 +4,11 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class StoreService {
-  currentWidgets = [{title:"The one and only widget"}]
+  currentWidgets = [{title:"The one and only widget",type:"line"}]
   constructor() { }
 
-  addWidget()
+  addWidget(typew:string)
   {
-    this.currentWidgets.push({title:"Widget number "+(this.currentWidgets.length+1)})
+    this.currentWidgets.push({title:"Widget "+(this.currentWidgets.length+1) +" "+ typew+ " chart",type:typew})
   }
 }

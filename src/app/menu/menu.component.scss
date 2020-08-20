@@ -12,3 +12,6 @@ $standardfont: BlinkMacSystemFont,-apple-system,Segoe UI,Roboto,Helvetica,Arial,
     background-color:rgb(72, 188, 162); /* Green */
     color: white;
 }
+p{
+    font-family: $standardfont;
+}

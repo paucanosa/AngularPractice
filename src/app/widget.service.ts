@@ -10,8 +10,8 @@ export class widgetService {
   notifyObservable$ = this.notify.asObservable();
   constructor( private StoreService: StoreService) { }
 
-  public addWidget() {
-      this.StoreService.addWidget();
+  public addWidget(typew:string) {
+      this.StoreService.addWidget(typew);
       this.notify.next(this.StoreService.currentWidgets);
   }
 }
