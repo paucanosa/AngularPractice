@@ -1,0 +1,17 @@
+<p>Chart number {{chart_id}}</p>
+<div class="boxChart__container">
+    <div>
+      <highcharts-chart
+        id="container"
+        [Highcharts]="Highcharts"
+        [constructorType]="chartConstructor"
+        [options]="myChart"
+        [callbackFunction]="chartCallback"
+        [(update)]="updateFromInput"
+        [oneToOne]="true"
+        style="display: block;"
+      >
+      </highcharts-chart>
+    </div>
+  </div>
+  

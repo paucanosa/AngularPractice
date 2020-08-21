@@ -4,6 +4,9 @@ import {AreaOptions} from '../charts/areachart'
 import {LineOptions} from '../charts/linechart'
 import {BarOptions} from '../charts/barchart'
 import {PieOptions}from '../charts/piechart'
+import { HighchartsChartComponent } from 'highcharts-angular';
+import { ThrowStmt } from '@angular/compiler';
+import { Subject, timer } from 'rxjs';
 @Component({
   selector: 'app-grid',
   templateUrl: './grid.component.html',
@@ -18,19 +21,16 @@ export class GridComponent implements OnInit {
     useCSSTransforms: true, // improves rendering performance by using CSS transform in place of left/top
   };
 
-  charOpt: { [id: string] : Object; } = {};
+  ResizeSubject: Subject<number> = new Subject<number>();
 
   @Input()
   widgets: Array<any>
   
-  constructor() { }
-  Highcharts: typeof Highcharts = Highcharts;
+  constructor() {}
 
   ngOnInit(): void {
-    this.charOpt["line"] = LineOptions
-    this.charOpt["bar"] = BarOptions
-    this.charOpt["area"] = AreaOptions
-    this.charOpt["pie"] = PieOptions
   }
-
+  itemChanged(iden:number){
+    this.ResizeSubject.next(iden)
+  }
   }
