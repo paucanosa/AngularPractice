@@ -22,18 +22,23 @@ export class GridComponent implements OnInit {
   };
 
   ResizeObs: Observable<number> = new Observable<number>();
-
+  lastiden: number
   @Input()
   widgets: Array<any>
   
   constructor() {}
 
   ngOnInit(): void {
+    this.lastiden = -1
   }
   itemChanged(iden:number){
     this.ResizeObs= Observable.create(observer => {
       console.log("Resize done to panel " + iden)
-      observer.next(iden)
+      var event: Object;
+      event = {id:iden}
+      observer.next(event)
+      
+      
     })
   }
   }
