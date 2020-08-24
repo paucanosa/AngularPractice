@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
 
   }
   private subscription: Subscription;
-  currentWidgets = [{title: "The one and only widget",type:"line"}]
+  currentWidgets = [{title: "The one and only widget",type:"line",id:1}]
    
   ngOnInit() {
        this.subscription = this.widgetService.notifyObservable$.subscribe((res) => {

@@ -6,7 +6,7 @@ import {BarOptions} from '../charts/barchart'
 import {PieOptions}from '../charts/piechart'
 import { HighchartsChartComponent } from 'highcharts-angular';
 import { ThrowStmt } from '@angular/compiler';
-import { Subject, timer } from 'rxjs';
+import { Subject, timer, Observable } from 'rxjs';
 @Component({
   selector: 'app-grid',
   templateUrl: './grid.component.html',
@@ -21,7 +21,7 @@ export class GridComponent implements OnInit {
     useCSSTransforms: true, // improves rendering performance by using CSS transform in place of left/top
   };
 
-  ResizeSubject: Subject<number> = new Subject<number>();
+  ResizeObs: Observable<number> = new Observable<number>();
 
   @Input()
   widgets: Array<any>
@@ -31,6 +31,9 @@ export class GridComponent implements OnInit {
   ngOnInit(): void {
   }
   itemChanged(iden:number){
-    this.ResizeSubject.next(iden)
+    this.ResizeObs= Observable.create(observer => {
+      console.log("Resize done to panel " + iden)
+      observer.next(iden)
+    })
   }
   }

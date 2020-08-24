@@ -3,7 +3,7 @@
 
     <ngx-gridster-item *ngFor="let widget of widgets"class="gridster"(change)="itemChanged(widget.id)">
         <div class="panel-heading">
-            <app-chart-panel [chart_id] = "widget.id" [events]="ResizeSubject.asObservable()" [chart_opt]="widget.type"></app-chart-panel>   
+            <app-chart-panel [chart_id] = "widget.id" [events]="ResizeObs | async" [chart_opt]="widget.type"></app-chart-panel>   
         </div>
     </ngx-gridster-item>
   
