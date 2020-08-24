@@ -2,7 +2,32 @@ $lettercolorprenomics: rgb(0, 23, 93);
 $backgcolorprenomics: rgb(72, 188, 162);
 $standardfont: BlinkMacSystemFont,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
 
-
+.leftbutton{
+    margin: auto;
+    width: 20%;
+    float: left;
+    padding: 10px;
+    font-family:$standardfont;
+    border-radius: 8px;
+    border-color:rgb(72, 188, 162);
+  }
+  .leftbutton:hover{
+    background-color:rgb(72, 188, 162); /* Green */
+    color: white;
+}
+.rightbutton{
+    margin: auto;
+    width: 20%;
+    float: right;
+    padding: 10px;
+    font-family:$standardfont;
+    border-radius: 8px;
+    border-color:rgb(72, 188, 162);
+  }
+  .rightbutton:hover{
+    background-color:rgb(72, 188, 162); /* Green */
+    color: white;
+}
 
 .panel-title{
     font-family:$standardfont;

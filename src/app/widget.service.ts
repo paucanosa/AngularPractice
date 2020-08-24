@@ -27,6 +27,20 @@ export class widgetService {
 
   public addWidget(typew:string) {
       this.StoreService.addWidget(typew);
-      this.notify.next(this.StoreService.currentWidgets);
+      this.notify.next(this.StoreService.currentDashboard);
+  }
+  public updateWidget(identifier,x,y,w,h,posx,posy)
+  {
+    this.StoreService.updateWidget(identifier,x,y,w,h,posx,posy);
+    this.notify.next(this.StoreService.currentDashboard)
+  }
+  public saveDashboard()
+  {
+    this.StoreService.saveDashboard()
+  }
+  public loadDashboard()
+  {
+    this.StoreService.loadDashboard()
+    this.notify.next(this.StoreService.currentDashboard)
   }
 }

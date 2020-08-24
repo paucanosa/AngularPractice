@@ -9,6 +9,7 @@ import { MenuComponent } from './menu/menu.component';
 import { GridComponent } from './grid/grid.component';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { ChartPanelComponent } from './grid/chart-panel/chart-panel.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { ChartPanelComponent } from './grid/chart-panel/chart-panel.component';
     MenuComponent,
     GridComponent,
     ChartPanelComponent,
+    DashboardComponent,
     
   ],
   imports: [

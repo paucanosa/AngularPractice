@@ -9,7 +9,7 @@ import { Dictionary } from 'highcharts';
 export class MenuComponent implements OnInit {
 
   
-  constructor(private AddwidgetService: widgetService ) { }
+  constructor(private widgetService: widgetService ) { }
   ngOnInit(): void {
     
   }
@@ -18,7 +18,7 @@ export class MenuComponent implements OnInit {
   addWidget()
   {
     console.log("New widget with type " + this.typeselected);
-    this.AddwidgetService.addWidget(this.typeselected);
+    this.widgetService.addWidget(this.typeselected);
   }
 
 }

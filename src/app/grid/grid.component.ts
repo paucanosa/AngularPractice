@@ -1,12 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import * as Highcharts from 'highcharts';
-import {AreaOptions} from '../charts/areachart'
-import {LineOptions} from '../charts/linechart'
-import {BarOptions} from '../charts/barchart'
-import {PieOptions}from '../charts/piechart'
-import { HighchartsChartComponent } from 'highcharts-angular';
-import { ThrowStmt } from '@angular/compiler';
 import { Subject, timer, Observable } from 'rxjs';
+import {widgetService} from '../widget.service';
+
 @Component({
   selector: 'app-grid',
   templateUrl: './grid.component.html',
@@ -21,24 +16,30 @@ export class GridComponent implements OnInit {
     useCSSTransforms: true, // improves rendering performance by using CSS transform in place of left/top
   };
 
-  ResizeObs: Observable<number> = new Observable<number>();
-  lastiden: number
+  ResizeObs: Subject<Object> = new Subject<Object>();
   @Input()
   widgets: Array<any>
   
-  constructor() {}
+  constructor(private widgetService: widgetService) {}
 
   ngOnInit(): void {
-    this.lastiden = -1
   }
-  itemChanged(iden:number){
-    this.ResizeObs= Observable.create(observer => {
-      console.log("Resize done to panel " + iden)
-      var event: Object;
-      event = {id:iden}
-      observer.next(event)
-      
-      
-    })
+  itemChanged(iden:number,$event){
+    this.widgetService.updateWidget(iden,$event["item"]["x"],$event["item"]["y"],$event["item"]["w"],$event["item"]["h"],$event["item"]["positionX"],$event["item"]["positionY"])
+
+    var ReflowChartByID: Object;
+    ReflowChartByID = {id:iden};
+
+    this.ResizeObs.next(ReflowChartByID);
   }
+  savedashboard()
+   {
+     this.widgetService.saveDashboard()
+     console.log("Saving Dashboard...")
+   }
+   loaddashboard()
+   {
+     this.widgetService.loadDashboard()
+     console.log("Loading Dashboard...")
+   }
   }

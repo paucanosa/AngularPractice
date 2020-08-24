@@ -1,9 +1,11 @@
 <h2>GRID Component</h2>
+<button class="leftbutton" (click)="savedashboard()">Save Dashboard</button> <button class="rightbutton"(click)="loaddashboard()"> Load last Dashboard</button>
+<br><br><br>
 <ngx-gridster [options]="gridsterOptions" [draggableOptions]="{ handlerClass: 'panel-heading' }"  >
 
-    <ngx-gridster-item *ngFor="let widget of widgets"class="gridster"(change)="itemChanged(widget.id)">
+    <ngx-gridster-item *ngFor="let widget of widgets"class="gridster"(change)="itemChanged(widget.id,$event)" [h]="widget.h" [y]="widget.y" [w]="widget.w" [x]="widget.x" [positionX]="200">
         <div class="panel-heading">
-            <app-chart-panel [chart_id] = "widget.id" [events]="ResizeObs | async" [chart_opt]="widget.type"></app-chart-panel>   
+            <app-chart-panel [chart_id] = "widget.id" [ReflowChartByID]="ResizeObs | async" [chart_opt]="widget.type"></app-chart-panel>   
         </div>
     </ngx-gridster-item>
   
