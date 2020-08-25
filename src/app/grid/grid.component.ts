@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Subject, timer, Observable } from 'rxjs';
 import {widgetService} from '../widget.service';
+import { GridsterComponent } from 'angular2gridster';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-grid',

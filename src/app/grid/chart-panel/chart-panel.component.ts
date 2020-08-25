@@ -2,6 +2,7 @@ import { Component, OnInit, Input, resolveForwardRef, ChangeDetectionStrategy } 
 import * as Highcharts from 'highcharts';
 import { Subscription, Observable } from 'rxjs';
 import { charOpt } from '../../widget.service'
+import { isEmptyExpression } from '@angular/compiler';
 @Component({
   selector: 'app-chart-panel',
   templateUrl: './chart-panel.component.html',
@@ -17,9 +18,13 @@ export class ChartPanelComponent implements OnInit {
 
   @Input()
   set ReflowChartByID(obj: Object) {
-    if (obj['id']== this.chart_id) {
-      this.chart.reflow();
+    if( obj != null)
+    {
+      if (obj['id']== this.chart_id) {
+        this.chart.reflow();
+      }
     }
+    
   }
   chart;
   updateFromInput = false;
@@ -34,7 +39,6 @@ export class ChartPanelComponent implements OnInit {
     };
   }
   ngOnInit() {
-    console.log(this.chart_opt)
     this.myChart = charOpt[this.chart_opt]
   }
 
