@@ -1,9 +1,8 @@
 
-import { Component, OnInit, Input} from '@angular/core';
-import { GridsterComponent, IGridsterOptions, IGridsterDraggableOptions } from 'angular2gridster';
-import {widgetService} from '../widget.service';
-import { Subscription } from 'rxjs';
-
+import { Component, OnInit} from '@angular/core';
+import { widgetService } from '../widget.service';
+import { Subscription} from 'rxjs';
+import { StoreService } from '../store.service'
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -11,18 +10,27 @@ import { Subscription } from 'rxjs';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private widgetService: widgetService){
+  constructor(private widgetService: widgetService, private StoreService: StoreService) {
   }
-  
-  private subscription: Subscription;
-  currentWidgets = [{title:"The one and only widget",type:"line",id:1,x:0,y:0,w:1,h:1,posx:0,posy:0}]
 
-   
+  private subscription: Subscription;
+  currentDashboard = []
+  savedDashboard = []
+
   ngOnInit() {
-       this.subscription = this.widgetService.notifyObservable$.subscribe((res) => {
-       console.log("CurrentDashboard changed");
-       this.currentWidgets = res
-   });
-   }
-   
+    this.subscription = this.widgetService.notifyObservable$.subscribe((res) => {
+      this.currentDashboard = res
+      // console.log(res)
+    });
+  }
+  save_dashboard() {
+    this.savedDashboard = []
+    this.currentDashboard.forEach(widget => this.savedDashboard.push(Object.assign({}, widget)))
+  }
+  load_dashboard() {
+    this.currentDashboard = []
+    this.savedDashboard.forEach(widget => this.currentDashboard.push(Object.assign({}, widget)))
+    this.StoreService.replaceDashboard(this.currentDashboard)
+  }
+
 }

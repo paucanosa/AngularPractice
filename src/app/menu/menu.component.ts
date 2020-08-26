@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
-import {widgetService} from '../widget.service';
+import { widgetService } from '../widget.service';
 import { Dictionary } from 'highcharts';
 @Component({
   selector: 'app-menu',
@@ -8,16 +8,14 @@ import { Dictionary } from 'highcharts';
 })
 export class MenuComponent implements OnInit {
 
-  
-  constructor(private widgetService: widgetService ) { }
-  ngOnInit(): void {
-    
-  }
-  typeselected="pie" 
-  types=["pie","line","area","bar"]
-  addWidget()
-  {
-    console.log("New widget with type " + this.typeselected);
+
+  constructor(private widgetService: widgetService) { }
+  ngOnInit(): void { }
+
+  typeselected = "pie"
+  types = ["pie", "line", "area", "bar"]
+
+  addWidget() {
     this.widgetService.addWidget(this.typeselected);
   }
 

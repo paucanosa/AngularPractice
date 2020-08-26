@@ -1,8 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Subject, timer, Observable } from 'rxjs';
-import {widgetService} from '../widget.service';
-import { GridsterComponent } from 'angular2gridster';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Subject } from 'rxjs';
+import { widgetService } from '../widget.service';
+
 
 @Component({
   selector: 'app-grid',
@@ -20,28 +19,31 @@ export class GridComponent implements OnInit {
 
   ResizeObs: Subject<Object> = new Subject<Object>();
   @Input()
-  widgets: Array<any>
-  
-  constructor(private widgetService: widgetService) {}
+  dashboard: Array<any>
+
+  @Output()
+  save_dashboard = new EventEmitter<string>()
+
+  @Output()
+  load_dashboard = new EventEmitter<string>()
+
+  constructor(private widgetService: widgetService) { }
 
   ngOnInit(): void {
   }
-  itemChanged(iden:number,$event){
-    this.widgetService.updateWidget(iden,$event["item"]["x"],$event["item"]["y"],$event["item"]["w"],$event["item"]["h"],$event["item"]["positionX"],$event["item"]["positionY"])
+  widgetChanged(iden: number, $event) {
+    //console.log(this.dashboard)
+    this.widgetService.updateWidget(iden, $event["item"]["x"], $event["item"]["y"], $event["item"]["w"], $event["item"]["h"])
 
     var ReflowChartByID: Object;
-    ReflowChartByID = {id:iden};
+    ReflowChartByID = { id: iden };
 
     this.ResizeObs.next(ReflowChartByID);
   }
-  savedashboard()
-   {
-     this.widgetService.saveDashboard()
-     console.log("Saving Dashboard...")
-   }
-   loaddashboard()
-   {
-     this.widgetService.loadDashboard()
-     console.log("Loading Dashboard...")
-   }
+  savedashboard() {
+    this.save_dashboard.emit("save")
   }
+  loaddashboard() {
+    this.load_dashboard.emit("load")
+  }
+}

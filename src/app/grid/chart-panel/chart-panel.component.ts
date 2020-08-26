@@ -9,6 +9,13 @@ import { isEmptyExpression } from '@angular/compiler';
   styleUrls: ['./chart-panel.component.scss']
 })
 export class ChartPanelComponent implements OnInit {
+  
+  chart;
+  updateFromInput = false;
+  Highcharts = Highcharts;
+  chartConstructor = "chart";
+  chartCallback;
+  myChart;
 
   @Input()
   chart_id: number
@@ -20,18 +27,11 @@ export class ChartPanelComponent implements OnInit {
   set ReflowChartByID(obj: Object) {
     if( obj != null)
     {
-      if (obj['id']== this.chart_id) {
+      if (obj['id']== this.chart_id)
         this.chart.reflow();
-      }
-    }
-    
+    }  
   }
-  chart;
-  updateFromInput = false;
-  Highcharts = Highcharts;
-  chartConstructor = "chart";
-  chartCallback;
-  myChart;
+  
 
   constructor() {
     this.chartCallback = chart => {

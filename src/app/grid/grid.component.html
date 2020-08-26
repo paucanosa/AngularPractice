@@ -4,7 +4,7 @@
 
 <ngx-gridster [options]="gridsterOptions" [draggableOptions]="{ handlerClass: 'panel-heading' }"  >
 
-    <ngx-gridster-item *ngFor="let widget of widgets"class="gridster"(change)="itemChanged(widget.id,$event)" [h]="widget.h" [y]="widget.y" [w]="widget.w" [x]="widget.x" [positionX]="widget.posx" [positionY]="widget.posy">
+    <ngx-gridster-item *ngFor="let widget of dashboard"class="gridster"(change)="widgetChanged(widget.id,$event)" [h]="widget.h" [y]="widget.y" [w]="widget.w" [x]="widget.x">
         <div class="panel-heading">
             <app-chart-panel [chart_id] = "widget.id" [ReflowChartByID]="ResizeObs | async" [chart_opt]="widget.type"></app-chart-panel>   
         </div>
