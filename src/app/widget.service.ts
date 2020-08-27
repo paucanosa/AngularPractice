@@ -19,30 +19,30 @@ charOpt["pie"] = PieOptions
 })
 export class widgetService {
   private subscription: Subscription
-  currentDashboard: widget[];
   constructor() {
+
    }
 
   ngOnInit() {
-    this.subscription = analysisStore.select("current_dashboard").subscribe((res) => {
-      this.currentDashboard = res
-    });
+    
   }
 
   public addWidget(typew: string) {
+    let actual_dashboard = analysisStore.getValue("current_dashboard")
     var newwidget: widget = {
-      h: null, x: null, y: null, w: null, id: this.currentDashboard.length + 1,
-      type: typew, title: "Widget number " + (this.currentDashboard.length + 1)
+      h: null, x: null, y: null, w: null, id: actual_dashboard.length + 1,
+      type: typew, title: "Widget number " + (actual_dashboard.length + 1)
     }
-    this.currentDashboard.push(newwidget)
-    analysisStore.set("current_dashboard", this.currentDashboard)
+    actual_dashboard.push(newwidget)
+    analysisStore.set("current_dashboard", actual_dashboard)
   }
   public updateWidget(identifier, x, y, w, h) {
-    var foundIndex = this.currentDashboard.findIndex(x => x.id == identifier);
+    let actual_dashboard = analysisStore.getValue("current_dashboard")
+    var foundIndex = actual_dashboard.findIndex(x => x.id == identifier);
     var newwidget: widget = {
-      h: h, x: x, y: y, w: w, id: identifier, type: this.currentDashboard[foundIndex].type, title: this.currentDashboard[foundIndex].title
+      h: h, x: x, y: y, w: w, id: identifier, type: actual_dashboard[foundIndex].type, title: actual_dashboard[foundIndex].title
     }
-    this.currentDashboard[foundIndex] = newwidget
-    analysisStore.set("current_dashboard", this.currentDashboard)
+    actual_dashboard[foundIndex] = newwidget
+    analysisStore.set("current_dashboard", actual_dashboard)
   }
 }
