@@ -1,3 +1,3 @@
 <h1 style="text-align:center;"> PRENOMICS PRACTICE </h1>
 <app-menu ></app-menu>
-<app-grid [dashboard]="currentDashboard" (save_dashboard)="save_dashboard()" (load_dashboard)="load_dashboard()"></app-grid>
+<app-grid [dashboard]="dashboard | async" (save_dashboard)="save_dashboard()" (load_dashboard)="load_dashboard()"></app-grid>

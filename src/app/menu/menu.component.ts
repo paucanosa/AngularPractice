@@ -1,6 +1,6 @@
-import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { widgetService } from '../widget.service';
-import { Dictionary } from 'highcharts';
+import { ChangeDetectionStrategy } from '@angular/compiler/src/core';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',

@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { widgetService } from '../widget.service';
-import { Subscription } from 'rxjs';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { analysisStore } from '../analysis.store';
 import { widget } from '../models/interfaces';
 
@@ -11,28 +9,21 @@ import { widget } from '../models/interfaces';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private widgetService: widgetService) {
+  constructor() {
   }
 
-  private subscription: Subscription
-  currentDashboard: widget[] = []
+  dashboard = analysisStore.select("current_dashboard")
   savedDashboard: widget[] = []
 
   ngOnInit() {
-    this.subscription = analysisStore.select("current_dashboard").subscribe((res) => {
-      this.currentDashboard = res
-    });
   }
+
   save_dashboard() {
-    let new_saved_dashboard = []
-    this.currentDashboard.forEach(widget => new_saved_dashboard.push(Object.assign({}, widget)))
-    this.savedDashboard = new_saved_dashboard
+    this.savedDashboard = [...analysisStore.getValue("current_dashboard")]
   }
   load_dashboard() {
-    let new_dashboard = []
-    this.savedDashboard.forEach(widget => new_dashboard.push(Object.assign({}, widget)))
-    this.currentDashboard = new_dashboard
-    analysisStore.set('current_dashboard', this.currentDashboard)
+    analysisStore.set('current_dashboard', this.savedDashboard)
+
   }
 
 }

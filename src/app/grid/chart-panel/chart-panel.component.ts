@@ -1,12 +1,12 @@
-import { Component, OnInit, Input, resolveForwardRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import * as Highcharts from 'highcharts';
-import { Subscription, Observable } from 'rxjs';
-import { charOpt } from '../../widget.service'
-import { isEmptyExpression } from '@angular/compiler';
+import { charOpt } from '../../widget.service';
+
 @Component({
   selector: 'app-chart-panel',
   templateUrl: './chart-panel.component.html',
-  styleUrls: ['./chart-panel.component.scss']
+  styleUrls: ['./chart-panel.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChartPanelComponent implements OnInit {
   

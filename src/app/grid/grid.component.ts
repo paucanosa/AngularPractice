@@ -32,8 +32,7 @@ export class GridComponent implements OnInit {
   }
 
   identify(index, widget) {
-    console.log("Checking...")
-    return widget.x, widget.y, widget.w, widget.h;
+    return widget.id;
   }
 
   widgetChanged(iden: number, $event) {

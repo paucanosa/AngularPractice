@@ -18,14 +18,9 @@ charOpt["pie"] = PieOptions
   providedIn: 'root'
 })
 export class widgetService {
-  private subscription: Subscription
-  constructor() {
+  constructor() { }
 
-   }
-
-  ngOnInit() {
-    
-  }
+  ngOnInit() { }
 
   public addWidget(typew: string) {
     let actual_dashboard = analysisStore.getValue("current_dashboard")

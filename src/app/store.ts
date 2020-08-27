@@ -20,9 +20,9 @@ export class Store<StoreState> {
 
   select<K extends keyof StoreState>(name: K): Observable<StoreState[K]> {
     return this._store.pipe(pluck(name));
-    //docu rxjs pluck
-    //el pipe en si no te una funcio principal aqui.. nomes saplica a un observable probablement no a un subject
-    //utilitzar per subscriures a una variable del store, indiques quina amb "name" retorna observable!
+    //Docu rxjs pluck
+    //El pipe en si no te una funcio principal aqui.. nomes saplica a un observable probablement no a un subject
+    //Utilitzar per subscriures a una variable del store, indiques quina amb "name" retorna observable!
   }
 
   set<K extends keyof StoreState>(name: K, state: StoreState[K]): void {
