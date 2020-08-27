@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Subject } from 'rxjs';
 import { widgetService } from '../widget.service';
 
-
 @Component({
   selector: 'app-grid',
   templateUrl: './grid.component.html',
@@ -31,8 +30,13 @@ export class GridComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  identify(index, widget) {
+    console.log("Checking...")
+    return widget.x, widget.y, widget.w, widget.h;
+  }
+
   widgetChanged(iden: number, $event) {
-    //console.log(this.dashboard)
     this.widgetService.updateWidget(iden, $event["item"]["x"], $event["item"]["y"], $event["item"]["w"], $event["item"]["h"])
 
     var ReflowChartByID: Object;

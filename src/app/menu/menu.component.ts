@@ -12,7 +12,7 @@ export class MenuComponent implements OnInit {
   constructor(private widgetService: widgetService) { }
   ngOnInit(): void { }
 
-  typeselected = "pie"
+  typeselected = "area"
   types = ["pie", "line", "area", "bar"]
 
   addWidget() {

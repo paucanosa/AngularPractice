@@ -32,13 +32,13 @@ export class ChartPanelComponent implements OnInit {
     }  
   }
   
-
   constructor() {
     this.chartCallback = chart => {
       this.chart = chart;
     };
   }
   ngOnInit() {
+    console.log("New chart")
     this.myChart = charOpt[this.chart_opt]
   }
 

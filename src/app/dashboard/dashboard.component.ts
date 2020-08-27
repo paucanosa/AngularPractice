@@ -1,8 +1,9 @@
-
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { widgetService } from '../widget.service';
-import { Subscription} from 'rxjs';
-import { StoreService } from '../store.service'
+import { Subscription } from 'rxjs';
+import { analysisStore } from '../analysis.store';
+import { widget } from '../models/interfaces';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -10,27 +11,28 @@ import { StoreService } from '../store.service'
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private widgetService: widgetService, private StoreService: StoreService) {
+  constructor(private widgetService: widgetService) {
   }
 
-  private subscription: Subscription;
-  currentDashboard = []
-  savedDashboard = []
+  private subscription: Subscription
+  currentDashboard: widget[] = []
+  savedDashboard: widget[] = []
 
   ngOnInit() {
-    this.subscription = this.widgetService.notifyObservable$.subscribe((res) => {
+    this.subscription = analysisStore.select("current_dashboard").subscribe((res) => {
       this.currentDashboard = res
-      // console.log(res)
     });
   }
   save_dashboard() {
-    this.savedDashboard = []
-    this.currentDashboard.forEach(widget => this.savedDashboard.push(Object.assign({}, widget)))
+    let new_saved_dashboard = []
+    this.currentDashboard.forEach(widget => new_saved_dashboard.push(Object.assign({}, widget)))
+    this.savedDashboard = new_saved_dashboard
   }
   load_dashboard() {
-    this.currentDashboard = []
-    this.savedDashboard.forEach(widget => this.currentDashboard.push(Object.assign({}, widget)))
-    this.StoreService.replaceDashboard(this.currentDashboard)
+    let new_dashboard = []
+    this.savedDashboard.forEach(widget => new_dashboard.push(Object.assign({}, widget)))
+    this.currentDashboard = new_dashboard
+    analysisStore.set('current_dashboard', this.currentDashboard)
   }
 
 }
