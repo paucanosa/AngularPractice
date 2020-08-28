@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Subject, Subscription } from 'rxjs';
 import { analysisStore } from './analysis.store'
 import { AreaOptions } from './models/charts/areachart'
 import { LineOptions } from './models/charts/linechart'
@@ -39,5 +38,8 @@ export class widgetService {
     }
     actual_dashboard[foundIndex] = newwidget
     analysisStore.set("current_dashboard", actual_dashboard)
+  }
+  public replace_dashboard(dashboard: widget[]) {
+    analysisStore.set("current_dashboard", dashboard)
   }
 }

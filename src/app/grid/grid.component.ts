@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Subject } from 'rxjs';
 import { widgetService } from '../widget.service';
+import { widget } from '../models/interfaces';
 
 @Component({
   selector: 'app-grid',
@@ -17,9 +18,17 @@ export class GridComponent implements OnInit {
   };
 
   ResizeObs: Subject<Object> = new Subject<Object>();
-  @Input()
-  dashboard: Array<any>
+  actual_dashboard: Array<any>
+  number_widgets: number
+  number_widgets_changed: number
 
+  @Input()
+  set dashboard(dashboard: widget[]) {
+    if (dashboard) {
+      this.actual_dashboard = dashboard
+      this.number_widgets = dashboard.length
+    }
+  }
   @Output()
   save_dashboard = new EventEmitter<string>()
 
@@ -29,18 +38,19 @@ export class GridComponent implements OnInit {
   constructor(private widgetService: widgetService) { }
 
   ngOnInit(): void {
+    this.number_widgets_changed = 0
   }
+
 
   identify(index, widget) {
     return widget.id;
   }
 
   widgetChanged(iden: number, $event) {
-    this.widgetService.updateWidget(iden, $event["item"]["x"], $event["item"]["y"], $event["item"]["w"], $event["item"]["h"])
+    this.widgetService.replace_dashboard(this.actual_dashboard)
 
     var ReflowChartByID: Object;
     ReflowChartByID = { id: iden };
-
     this.ResizeObs.next(ReflowChartByID);
   }
   savedashboard() {
